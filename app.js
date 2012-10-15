@@ -48,13 +48,12 @@ app.get('/switch/:id/on', function(req,res){
 						    gpio.write(7, true, function(err) {
 						        if (err) throw err;
 						        console.log('Written to pin');
-								
+									gpio.destroy();
 						    });
 						});	
 				}
 		    });
 		});
-			gpio.destroy();
 				res.redirect('/switch');
   });
 });
@@ -66,14 +65,13 @@ app.get('/switch/:id/off', function(req,res){
 		        	console.log('The value is true' + value);
 					gpio.setup(7, gpio.DIR_OUT, function write() {
 										    gpio.write(7, false);
-			
+												gpio.destroy();
 										});
 				}else{
 					console.log('The value is false' + value);
 				}
 		    });
 		});
-		gpio.destroy();		
 		res.redirect('/switch');
   });
 });
