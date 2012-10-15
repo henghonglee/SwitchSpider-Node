@@ -1,0 +1,23 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'link' ]
+2 info using npm@1.1.62
+3 info using node@v0.8.11
+4 verbose linkPkg /Users/Kinnovate/Desktop/nodeproj/mynodeapp
+5 verbose read json /Users/Kinnovate/Desktop/nodeproj/mynodeapp/package.json
+6 warn package.json application-name@0.0.1 No README.md file found!
+7 error Error: EACCES, symlink '/Users/Kinnovate/Desktop/nodeproj/mynodeapp'
+7 error  { [Error: EACCES, symlink '/Users/Kinnovate/Desktop/nodeproj/mynodeapp']
+7 error   errno: 3,
+7 error   code: 'EACCES',
+7 error   path: '/Users/Kinnovate/Desktop/nodeproj/mynodeapp' }
+8 error Please try running this command again as root/Administrator.
+9 error System Darwin 12.2.0
+10 error command "node" "/usr/local/bin/npm" "link"
+11 error cwd /Users/Kinnovate/Desktop/nodeproj/mynodeapp
+12 error node -v v0.8.11
+13 error npm -v 1.1.62
+14 error path /Users/Kinnovate/Desktop/nodeproj/mynodeapp
+15 error code EACCES
+16 error errno 3
+17 error stack Error: EACCES, symlink '/Users/Kinnovate/Desktop/nodeproj/mynodeapp'
+18 verbose exit [ 3, true ]
