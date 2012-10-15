@@ -45,12 +45,12 @@ app.get('/switch/:id/on', function(req,res){
 				}else{
 					console.log('The value is false' + value);
 					gpio.setup(7, gpio.DIR_OUT, function write() {
-															    gpio.write(7, true, function(err) {
-															        if (err) throw err;
-															        console.log('Written to pin');
-																	gpio.destroy();
-															    });
-															});
+					    gpio.write(7, true, function(err) {
+					        if (err) throw err;
+					        console.log('Written to pin');
+							gpio.destroy();
+					    });
+					});
 
 					
 				}
