@@ -38,12 +38,6 @@ var basic = auth({
 
 app.get('/switch/:id/on', function(req,res){
 	basic.apply(req, res, function(username) {
-		gpio.setup(7, gpio.DIR_IN, function readInput() {
-		    gpio.read(7, function(err, value) {
-				if(value){
-		        	console.log('The value is true' + value);
-				}else{
-					console.log('The value is false' + value);
 					gpio.setup(7, gpio.DIR_OUT, function write() {
 						    gpio.write(7, true, function(err) {
 						        if (err) throw err;
@@ -51,9 +45,7 @@ app.get('/switch/:id/on', function(req,res){
 									gpio.destroy();
 						    });
 						});	
-				}
-		    });
-		});
+		
 				res.redirect('/switch');
   });
 });
