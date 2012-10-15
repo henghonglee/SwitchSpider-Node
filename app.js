@@ -12,7 +12,7 @@ var app = express();
 var gpio = require('rpi-gpio')
 
 app.configure(function(){
-  app.set('port', process.env.PORT || 3000);
+  app.set('port', process.env.PORT || 4000);
   app.set('views', __dirname + '/views');
   app.set('view engine', 'ejs');
   app.use(express.favicon());
@@ -40,10 +40,15 @@ app.get('/switch/:id/on', function(req,res){
 	basic.apply(req, res, function(username) {
 		gpio.setup(7, gpio.DIR_IN, function readInput() {
 		    gpio.read(7, function(err, value) {
-				if(value)
-		        console.log('The value is true' + value);
-				else
-				console.log('The value is false' + value);
+				if(value){
+		        	console.log('The value is true' + value);
+				}else{
+					console.log('The value is false' + value);
+					gpio.setup(7, gpio.DIR_OUT, function write() {
+					    gpio.write(7, true);
+					});
+				}
+				
 		    });
 		});
 
@@ -55,10 +60,14 @@ app.get('/switch/:id/off', function(req,res){
 	basic.apply(req, res, function(username) {
 		gpio.setup(7, gpio.DIR_IN, function readInput() {
 		    gpio.read(7, function(err, value) {
-				if(value)
-		        console.log('The value is true' + value);
-				else
-				console.log('The value is false' + value);
+				if(value){
+		        	console.log('The value is true' + value);
+					gpio.setup(7, gpio.DIR_OUT, function write() {
+					    gpio.write(7, false);
+					});
+				}else{
+					console.log('The value is false' + value);
+				}
 		    });
 		});
 		res.send('switch ' + req.params.id + 'turned off');
