@@ -40,7 +40,7 @@ function write() {
 	        if (err) throw err;
 	        console.log('Written to pin');
 	    });
-
+}
 function unwrite() {
     gpio.write(7, false, function(err) {
         if (err) throw err;
