@@ -44,16 +44,13 @@ app.get('/switch/:id/on', function(req,res){
 		        	console.log('The value is true' + value);
 				}else{
 					console.log('The value is false' + value);
-					gpio.setup(7, gpio.DIR_OUT, function write() {
-					    gpio.write(7, true);
-					});
+					gpio.setup(7, gpio.DIR_OUT);
+					gpio.write(7, 1);
 				}
 				
 		    });
 		});
-
-		
-		res.send('switch ' + req.params.id + 'turned on');
+		res.redirect('/switch');
   });
 });
 app.get('/switch/:id/off', function(req,res){
@@ -62,15 +59,14 @@ app.get('/switch/:id/off', function(req,res){
 		    gpio.read(7, function(err, value) {
 				if(value){
 		        	console.log('The value is true' + value);
-					gpio.setup(7, gpio.DIR_OUT, function write() {
-					    gpio.write(7, false);
-					});
+					gpio.setup(7, gpio.DIR_OUT);
+					gpio.write(7, 0);
 				}else{
 					console.log('The value is false' + value);
 				}
 		    });
 		});
-		res.send('switch ' + req.params.id + 'turned off');
+		res.redirect('/switch');
   });
 });
 app.get('/switch', routes.switch_index);
