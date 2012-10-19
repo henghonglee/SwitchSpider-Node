@@ -51,9 +51,6 @@ function unwrite() {
 app.get('/switch/:id/on', function(req,res){
 	basic.apply(req, res, function(username) {
 					gpio.setup(7, gpio.DIR_OUT, write);
-					setTimeout(function() {
-						gpio.setup(7, gpio.DIR_OUT, unwrite);
-					    }, 30000);
 				res.redirect('/switch');
   });
 });
