@@ -35,14 +35,14 @@ var basic = auth({
     authList : ['henghonglee:password']
 });
 
-function write() {
-	    gpio.write(7, true, function(err) {
+function write(pin) {
+	    gpio.write(pin, true, function(err) {
 	        if (err) throw err;
 	        console.log('Written to pin');
 	    });
 }
-function unwrite() {
-    gpio.write(7, false, function(err) {
+function unwrite(pin) {
+    gpio.write(pin, false, function(err) {
         if (err) throw err;
         console.log('Written to pin');
     });
@@ -50,16 +50,16 @@ function unwrite() {
 	
 app.get('/switch/:id/on', function(req,res){
 	basic.apply(req, res, function(username) {
-					//gpio.setup(7, gpio.DIR_OUT, write);
-          gpio.setup(11, gpio.DIR_OUT, unwrite);
+					gpio.setup(7, gpio.DIR_OUT, write(7));
+          gpio.setup(11, gpio.DIR_OUT, unwrite(11));
 				res.redirect('/switch');
   });
 });
 app.get('/switch/:id/off', function(req,res){
 	basic.apply(req, res, function(username) {
 		
-		//gpio.setup(7, gpio.DIR_OUT, unwrite);
-    gpio.setup(11, gpio.DIR_OUT, write);
+		gpio.setup(7, gpio.DIR_OUT, unwrite(7));
+    gpio.setup(11, gpio.DIR_OUT, write(11);
 		res.redirect('/switch');
   });
 });
