@@ -61,7 +61,7 @@ function unwrite11() {
 }	
 app.get('/switch/:id/on', function(req,res){
 	basic.apply(req, res, function(username) {
-					gpio.setup(7, gpio.DIR_OUT, write);
+					//gpio.setup(7, gpio.DIR_OUT, write);
           gpio.setup(11, gpio.DIR_OUT, unwrite11);
 				res.redirect('/switch');
   });
@@ -69,7 +69,7 @@ app.get('/switch/:id/on', function(req,res){
 app.get('/switch/:id/off', function(req,res){
 	basic.apply(req, res, function(username) {
 		
-		gpio.setup(7, gpio.DIR_OUT, unwrite);
+		//gpio.setup(7, gpio.DIR_OUT, unwrite);
     gpio.setup(11, gpio.DIR_OUT, write11);
 		res.redirect('/switch');
   });
