@@ -59,7 +59,7 @@ app.get('/switch/:id/off', function(req,res){
 	basic.apply(req, res, function(username) {
 		
 		gpio.setup(7, gpio.DIR_OUT, unwrite(7));
-    gpio.setup(11, gpio.DIR_OUT, write(11);
+    gpio.setup(11, gpio.DIR_OUT, write(11));
 		res.redirect('/switch');
   });
 });
