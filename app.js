@@ -59,21 +59,29 @@ function unwrite11() {
         console.log('Written to pin');
     });
 }	
+var timeout;
 app.get('/switch/:id/on', function(req,res){
 	basic.apply(req, res, function(username) {
+					console.log("turning on pin7" + timeout);
 					gpio.setup(7, gpio.DIR_OUT, write);
-          gpio.setup(8, gpio.DIR_OUT, unwrite11);
+			clearTimeout(timeout);		
+          timeout = setTimeout(function(){
+			console.log("done with heating, turning switch off");
+			gpio.setup(7, gpio.DIR_OUT, unwrite);
+			},5000);
+			
 				res.redirect('/switch');
   });
 });
 app.get('/switch/:id/off', function(req,res){
 	basic.apply(req, res, function(username) {
-		
+		clearTimeout(timeout);
+		console.log("turning off pin7");
 		gpio.setup(7, gpio.DIR_OUT, unwrite);
-    gpio.setup(8, gpio.DIR_OUT, write11);
 		res.redirect('/switch');
   });
 });
+
 app.get('/switch', routes.switch_index);
 app.get('/', routes.index);
 
