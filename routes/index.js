@@ -19,10 +19,9 @@ exports.switch_index = function(req, res){
 	basic.apply(req, res, function(username) {
 
 		gpio.read(7,function(err,result){
-        	res.render('switch_index', { title: username , on: value});			
+        	res.render('switch_index', { title: username , on: result});			
 			});
 
 				 
-		res.render('switch_index', { title: username, on: true});
   });
 };
