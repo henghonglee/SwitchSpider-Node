@@ -48,6 +48,8 @@ connection = new apns.Connection(options);
 
 notification = new apns.Notification();
 notification.device = new apns.Device("1efd470f822793df6960abc6637481d8975f848bd381a9796b0a202ff3356f90");
+notification.badge = 1;
+notification.sound = "dong.aiff";
 // notification.alert = "Hello World !";
 // connection.sendNotification(notification);
 
