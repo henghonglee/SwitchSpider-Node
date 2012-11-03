@@ -53,14 +53,18 @@ notification.device = new apns.Device("1efd470f822793df6960abc6637481d8975f848bd
 
 
 gpio.on('change', function(channel, value) {
-    if(value && channel==7){
-	console.log("sending notification Switch is ON");
-		notification.alert = "Switch is now on!";
-		connection.sendNotification(notification);
+	if(channel==7){
+	    if(value){
+		console.log("sending notification Switch is ON");
+			notification.alert = "Switch is now on!";
+			connection.sendNotification(notification);
+		}else{
+			console.log("sending notification Switch is OFF");
+			notification.alert = "Switch is now off!";
+			connection.sendNotification(notification);
+		}
 	}else{
-		console.log("sending notification Switch is OFF");
-		notification.alert = "Switch is now off!";
-		connection.sendNotification(notification);
+		console.log("channel = "+channel + "and value ="+value);
 	}
 });
 
