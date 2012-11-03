@@ -35,6 +35,34 @@ var basic = auth({
     authList : ['henghonglee:password']
 });
 
+var apns = require("apns"), options, connection, notification;
+
+options = {
+   keyFile : "sskey.pem",
+   certFile : "sscert.pem",
+   gateway : "gateway.sandbox.push.apple.com",
+   debug : true
+};
+
+connection = new apns.Connection(options);
+
+notification = new apns.Notification();
+notification.device = new apns.Device("1efd470f822793df6960abc6637481d8975f848bd381a9796b0a202ff3356f90");
+// notification.alert = "Hello World !";
+// connection.sendNotification(notification);
+
+
+gpio.on('change', function(channel, value) {
+    if(value){
+		notification.alert = "Switch is now on!";
+		connection.sendNotification(notification);
+	}else{
+		notification.alert = "Switch is now off!";
+		connection.sendNotification(notification);
+	}
+});
+
+
 function write() {
 	    gpio.write(7, true, function(err) {
 	        if (err) throw err;
