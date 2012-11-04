@@ -51,8 +51,8 @@ notification.device = new apns.Device("1efd470f822793df6960abc6637481d8975f848bd
 notification.badge = 1;
 notification.sound = "dong.aiff";
 notification.payload = {"aps" : {"alert":"test!"}};
-// notification.alert = "Hello World !";
-// connection.sendNotification(notification);
+notification.alert = "Server is now running!";
+connection.sendNotification(notification);
 
 
 gpio.removeAllListeners();
