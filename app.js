@@ -70,19 +70,34 @@ function unwrite() {
         console.log('Written to pin');
     });
 }
-function write11() {
-      gpio.write(8, true, function(err) {
-          if (err) throw err;
-          console.log('Written to pin');
-      });
-}
-function unwrite11() {
-    gpio.write(8, false, function(err) {
-        if (err) throw err;
-        console.log('Written to pin');
-    });
-}	
+// function write11() {
+//       gpio.write(8, true, function(err) {
+//           if (err) throw err;
+//           console.log('Written to pin');
+//       });
+// }
+// function unwrite11() {
+//     gpio.write(8, false, function(err) {
+//         if (err) throw err;
+//         console.log('Written to pin');
+//     });
+// }	
 var timeout;
+app.get('/switch/test', function(req,res){
+	basic.apply(req, res, function(username) {
+		gpio.read(7,function(err,result){
+        	if(result){
+				res.writeHead(200, {'Content-Type': 'text/plain'});
+				  res.end('true');
+			}else{
+				res.writeHead(200, {'Content-Type': 'text/plain'});
+				  res.end('false');
+			}		
+			});
+		
+		});
+});
+
 app.get('/switch/:id/on', function(req,res){
 	basic.apply(req, res, function(username) {
 					console.log("turning on pin7" + timeout);
