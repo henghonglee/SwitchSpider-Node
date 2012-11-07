@@ -56,7 +56,10 @@ connection.sendNotification(notification);
 
 
 gpio.removeAllListeners();
-
+gpio.on('change', function(channel, value) {
+    console.log('Channel ' + channel + ' value is now ' + value);
+});
+gpio.setup(8, gpio.DIR_IN);
 
 function write() {
 	    gpio.write(7, true, function(err) {
@@ -70,18 +73,18 @@ function unwrite() {
         console.log('Written to pin');
     });
 }
-// function write11() {
-//       gpio.write(8, true, function(err) {
-//           if (err) throw err;
-//           console.log('Written to pin');
-//       });
-// }
-// function unwrite11() {
-//     gpio.write(8, false, function(err) {
-//         if (err) throw err;
-//         console.log('Written to pin');
-//     });
-// }	
+function write11() {
+      gpio.write(8, true, function(err) {
+          if (err) throw err;
+          console.log('Written to pin');
+      });
+}
+function unwrite11() {
+    gpio.write(8, false, function(err) {
+        if (err) throw err;
+        console.log('Written to pin');
+    });
+}	
 var timeout;
 app.get('/switch/test', function(req,res){
 	basic.apply(req, res, function(username) {
