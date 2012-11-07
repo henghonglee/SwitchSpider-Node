@@ -56,28 +56,13 @@ connection.sendNotification(notification);
 
 
 gpio.removeAllListeners();
-	gpio.setup(8,gpio.DIR_IN);
-var listener = setInterval(function(){
+gpio.setup(8,gpio.DIR_IN);
+var listener = setInterval(function(){gpio.read(8, function(err, value) {console.log('The value is ' + value);});	},3000);
 
-	gpio.read(8, function(err, value) {
-	        console.log('The value is ' + value);
-	    });	
-},3000);
+//gpio.on('change', function(channel, value) {console.log('Channel ' + channel + ' value is now ' + value);});
 
-
-
-function write() {
-	    gpio.write(7, true, function(err) {
-	        if (err) throw err;
-	        console.log('Written to pin');
-	    });
-}
-function unwrite() {
-    gpio.write(7, false, function(err) {
-        if (err) throw err;
-        console.log('Written to pin');
-    });
-}
+function write() {gpio.write(7, true, function(err) {if (err) throw err;console.log('Written to pin');});}
+function unwrite() {gpio.write(7, false, function(err) {if (err) throw err;console.log('Written to pin');});}
 function write11() {
       gpio.write(8, true, function(err) {
           if (err) throw err;
