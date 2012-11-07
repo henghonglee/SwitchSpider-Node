@@ -56,10 +56,15 @@ connection.sendNotification(notification);
 
 
 gpio.removeAllListeners();
-gpio.on('change', function(channel, value) {
-    console.log('Channel ' + channel + ' value is now ' + value);
-});
-gpio.setup(8, gpio.DIR_IN);
+	gpio.setup(8,DIR_IN);
+var listener = setInterval(function(){
+
+	gpio.read(8, function(err, value) {
+	        console.log('The value is ' + value);
+	    });	
+},3000);
+
+
 
 function write() {
 	    gpio.write(7, true, function(err) {
