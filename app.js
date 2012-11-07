@@ -56,7 +56,7 @@ connection.sendNotification(notification);
 
 
 gpio.removeAllListeners();
-	gpio.setup(8,DIR_IN);
+	gpio.setup(8,gpio.DIR_IN);
 var listener = setInterval(function(){
 
 	gpio.read(8, function(err, value) {
